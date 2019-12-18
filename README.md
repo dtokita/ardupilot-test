@@ -6,6 +6,8 @@ To confirm that setup was proper run the SITL simulator, cd into /ardupilot/Ardu
 
 You can then run "pip3 install -r requirements.txt" on the requirements.txt provided in this repo, this will install the python packages necessary to run the script.
 
+Add the line "GPS_TYPE 14.000" to the end of the file /ardupilot/Tools/autotest/default_params/copter.parm. This is necessary to do before start up because the GPS type is initialized and read only at start of SITL (cannot change once simulation is started)
+
 # Running the Script
 
 Close the SITL simulator. Have two terminals open, one to the SITL (in the /ardupilot/ArduCopter directory) and the other to contents of this repo. First run "python3 test\_module.py". The switch to the SITL simulation terminal and run "sim\_vehicle.py -w --console --map".
