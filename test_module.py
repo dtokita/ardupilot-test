@@ -55,7 +55,7 @@ moving = False
 
 # Send GPS position
 while True:
-  time.sleep(0.05)
+#  time.sleep(0.05)
 
   current_location = vehicle.location.global_relative_frame
   velocity = vehicle.velocity
@@ -65,7 +65,7 @@ while True:
   if armed:
 
     if not moving:
-      vehicle.simple_goto(LocationGlobalRelative(21.2, -157.81712, 0))
+      vehicle.simple_goto(LocationGlobalRelative(21.2, -157.81712, 100))
       moving = True
 
     send_gps_message(master, vehicle, current_location, velocity, gps0)
@@ -76,8 +76,8 @@ while True:
   if vehicle.gps_0.fix_type > 2:
   
     while not vehicle.is_armable:
-      send_gps_message(master, vehicle, uh_manoa, velocity, gps0)
-      time.sleep(0.1)
+      send_gps_message(master, vehicle, current_location, velocity, gps0)
+#      time.sleep(0.1)
 
     if not armed:
       print("ARMING")
@@ -88,6 +88,6 @@ while True:
       vehicle.simple_takeoff(100)
 
       while vehicle.location.global_relative_frame.alt <= 95:
-        send_gps_message(master, vehicle, uh_manoa, velocity, gps0)
-        time.sleep(0.1)
+        send_gps_message(master, vehicle, current_location, velocity, gps0)
+#        time.sleep(0.1)
 
